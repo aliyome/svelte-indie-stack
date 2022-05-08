@@ -11,21 +11,26 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
+    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+    "prisma:setup": "prisma migrate dev && esbuild prisma/seed.ts --outfile=node_modules/tmp-seed.cjs --bundle --format=cjs --external:prisma --external:@prisma/client && node node_modules/tmp-seed.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.21.0",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node": "^17.0.31",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "autoprefixer": "^10.4.7",
+    "esbuild": "^0.14.38",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^4.0.0",
     "postcss": "^8.4.13",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.0",
+    "prisma": "^3.13.0",
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.6",
     "svelte-preprocess": "^4.10.1",
@@ -33,5 +38,9 @@
     "tslib": "^2.3.1",
     "typescript": "~4.6.2"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^3.13.0",
+    "bcryptjs": "^2.4.3"
+  }
 }
